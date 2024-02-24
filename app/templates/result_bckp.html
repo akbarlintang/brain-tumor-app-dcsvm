@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        {% load static %}  
+
+        <!-- Bootstrap CSS -->
+        <!-- <link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.css' %}"> -->
+        <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+        <title>Hello, world!</title>
+    </head>
+    <body>
+        <nav class="navbar navbar-dark bg-primary">
+            <a class="navbar-brand" href="#">
+                <img src="{% static 'img/logo_unnes.png' %}" width="30" height="30" class="d-inline-block align-top" alt="">
+                Bootstrap
+            </a>
+        </nav>
+        <h1>Hasil adalah {{ hasil }}!</h1>
+
+        <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    </body>
+</html>

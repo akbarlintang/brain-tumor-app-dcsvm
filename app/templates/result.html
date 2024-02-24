@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        {% load static %}  
+
+        <!-- Bootstrap CSS -->
+        <!-- <link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.css' %}"> -->
+        <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+        <title>Sistem Klasifikasi Tumor Otak!</title>
+
+        <style>
+            html {
+                scroll-behavior: smooth;
+            }
+            
+            .bg-navbar{
+                background-color: #034975;
+            }
+
+            .navbar-container{
+                padding-left: 5em;
+                padding-right: 15em;
+            }
+
+            .jumbotron-image {
+                background-position: center center;
+                background-repeat: no-repeat;
+                background-size: 50%;
+                height: 670px;
+            }
+
+            .color-blue{
+                color: #034975;
+            }
+
+            .bg-blue{
+                background-color: #034975;
+            }
+        </style>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-navbar navbar-container">
+            <a class="navbar-brand" href="#">
+                <img src="{% static 'img/logo_unnes.png' %}" width="35px" height="100%" class="d-inline-block align-top" alt="">
+                <span class="ml-2 my-auto">
+                    Brain Tumor Classification System
+                </span>
+            </a>
+
+            <div class="ml-auto">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav font-weight-bold">
+                        <li class="nav-item mx-3">
+                            <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item mx-3">
+                            <a class="nav-link" href="/">Information</a>
+                        </li>
+                        <li class="nav-item mx-3">
+                            <a class="nav-link" href="/">About</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- <div class="jumbotron jumbotron-image bg-white">
+            <div class="row">
+                <div class="col-7 text-center">
+                    <img src="{% static 'img/brain_vector.jpg' %}" width="80%" height="100%" alt="jumbotron-image">
+                </div>
+                <div class="col-5 my-auto pr-5">
+                    <h1 class="text-warning">Selamat Datang di Sistem Klasifikasi Tumor Otak</h1>
+                    <p class="color-blue font-weight-bold">Klasifikasi Golongan Tumor Hasil MRI Otak Menggunakan Convolutional Neural Network dengan Bantuan Generative Adversarial Network.</p>
+                    <a class="btn text-white bg-blue btn-lg" href="#klasifikasi" role="button">Klasifikasi Sekarang</a>
+                </div>
+            </div>
+        </div> -->
+
+        <div class="container py-5" id="klasifikasi">
+            <h2 class="text-center my-5 color-blue font-weight-bold">CLASSIFICATION RESULT</h2>
+
+            <div class="card w-50 mx-auto">
+                <!-- <div class="card-header bg-warning">
+                    <h5 class="text-center color-blue">Berikut merupakan hasil klasifikasinya</h5>
+                </div> -->
+                <div class="card-body py-5">
+                    <h6 class="text-center color-blue mt-3">Here is the result of the classifications</h6>
+                    <h2 class="{{ hasil|yesno:'text-danger,text-success' }} mt-3 mb-5 text-center">{{ hasil|yesno:'Positive,Negative' }}</h2>
+                </div>
+            </div>
+
+            <div class="text-center mt-5">
+                <!-- <input type="submit" class="btn btn-success"></input> -->
+                <a href="/" class="btn btn-primary">Back</a>
+            </div>
+        </div>
+
+        <!-- <div class="container py-5" id="informasi">
+            <h2 class="text-center my-5 color-blue font-weight-bold">INFORMASI</h2>
+
+            <div class="accordion" id="accordionExample">
+                <div class="card">
+                    <div class="card-header bg-warning" id="headingOne">
+                        <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            <h4 class="text-center color-blue">Apa itu CNN?</h4>
+                        </button>
+                    </div>
+                
+                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                    <div class="card-body text-center color-blue font-weight-bold">
+                        Convolutional Neural Network merupakan salah satu jenis Machine Learning, dimana model akan belajar untuk menemukan pola atau struktur tersembunyi yang sulit untuk dilihat oleh mata secara langsung. Nantinya pola tersebut dapat dimanfaatkan untuk melakukan tugas klasifikasi baik berupa gambar, teks, maupun suara
+                    </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header bg-warning" id="headingTwo">
+                    <h2 class="mb-0">
+                        <button class="btn btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            <h4 class="text-center color-blue">Apa itu GAN?</h4>
+                        </button>
+                    </h2>
+                    </div>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                    <div class="card-body text-center color-blue font-weight-bold">
+                        Generative Adversarial Network (GAN) merupakan salah satu arsitektur jaringan syaraf tiruan yang dapat digunakan untuk membentuk atau membangkitkan suatu data baru berdasarkan kumpulan data yang sudah dilatih sebelumnya.
+                    </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="headingThree">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        Collapsible Group Item #3
+                        </button>
+                    </h2>
+                    </div>
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                    <div class="card-body">
+                        And lastly, the placeholder content for the third and final accordion panel. This panel is hidden by default.
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container py-5" id="tentang">
+            <h2 class="text-center my-5 color-blue font-weight-bold">TENTANG</h2>
+
+            <div class="row">
+                <div class="col-6">
+                    <img src="{% static 'img/logo-unnes.png' %}" width="500px" height="100%" class="d-inline-block align-top" alt="">
+                </div>
+                <div class="col-6 my-auto">
+                    <h1 class="text-warning">Universitas Negeri Semarang</h1>
+                    <p class="color-blue font-weight-bold">Implementasi Klasifikasi Hasil MRI Otak Menggunakan Convolutional Neural Network dengan Bantuan Generative Adversarial Network.</p>
+                </div>
+            </div>
+        </div> -->
+
+        <!-- <div class="bg-warning mt-5 py-4 px-5">
+            <div class="text-right">
+                &copy; Universitas Negeri Semarang 2022
+            </div>
+        </div> -->
+
+        <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+        <script src="{% static 'js/jquery.js' %}"></script>
+        <script src="{% static 'js/bootstrap.js' %}"></script>
+    </body>
+</html>

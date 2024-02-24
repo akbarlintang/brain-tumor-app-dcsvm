@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        {% load static %}  
+
+        <!-- Bootstrap CSS -->
+        <!-- <link rel="stylesheet" href="{% static 'vendor/bootstrap/css/bootstrap.css' %}"> -->
+        <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+        <title>Sistem Klasifikasi Tumor Otak!</title>
+
+        <style>
+            html {
+                scroll-behavior: smooth;
+            }
+            
+            .bg-navbar{
+                background-color: #034975;
+            }
+
+            .navbar-container{
+                padding-left: 5em;
+                padding-right: 15em;
+            }
+
+            .jumbotron-image {
+                background-position: center center;
+                background-repeat: no-repeat;
+                background-size: 50%;
+                height: 670px;
+            }
+
+            .color-blue{
+                color: #034975;
+            }
+
+            .bg-blue{
+                background-color: #034975;
+            }
+        </style>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-navbar navbar-container">
+            <a class="navbar-brand d-flex flex-row" href="#">
+                <img src="{% static 'img/logo_unnes.png' %}" width="35px" height="100%" class="d-inline-block align-top" alt="">
+                <div class="ml-3 my-auto">
+                    Brain Tumor Classification System
+                </div>
+            </a>
+
+            <div class="ml-auto">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav font-weight-bold">
+                        <li class="nav-item active mx-3">
+                            <a class="nav-link" href="#home">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item mx-3">
+                            <a class="nav-link" href="#informasi">Information</a>
+                        </li>
+                        <li class="nav-item mx-3">
+                            <a class="nav-link" href="#tentang">About</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="jumbotron bg-white mx-5" id="home">
+            <div class="row">
+                <div class="col-7 text-center">
+                    <img src="{% static 'img/brain_tumor.png' %}" width="80%" height="100%" alt="jumbotron-image">
+                </div>
+                <div class="col-5 my-auto pr-5">
+                    <h1 class="text-warning">Welcome to Brain Tumor Classification System</h1>
+                    <p class="color-blue font-weight-bold">Classification of tumors on Brain MRI result using Convolutional Neural Network with Generative Adversarial Network and Transfer Learning.</p>
+                    <a class="btn text-white bg-blue btn-lg" href="#klasifikasi" role="button">Classify Now</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="container py-5" id="klasifikasi">
+            <h2 class="text-center my-5 color-blue font-weight-bold">CLASSIFICATION</h2>
+
+            <div class="card w-50 mx-auto">
+                <div class="card-body py-5">
+                    <form action="result" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <h3 class="text-center color-blue">Upload Brain MRI Image</h3>
+                        <div class="input-group mb-3 w-50 mx-auto my-5">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" name="image" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                                <label class="custom-file-label" for="inputGroupFile01">Choose Image</label>
+                            </div>
+                        </div>
+            
+                        <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+                        <div class="text-center">
+                            <input type="submit" class="btn btn-success"></input>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="container py-5" id="informasi">
+            <h2 class="text-center my-5 color-blue font-weight-bold">INFORMATION</h2>
+
+            <div class="accordion" id="accordionExample">
+                <div class="card">
+                    <div class="card-header bg-warning" id="headingOne">
+                        <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            <h4 class="text-center color-blue">What is CNN?</h4>
+                        </button>
+                    </div>
+                
+                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                    <div class="card-body text-center color-blue font-weight-bold">
+                        Convolutional Neural Network (CNN) a type of Artificial Neural Network, where the model will learn to find a hidden patterns or structures that are difficult for eye to see. The model will then classify images based on the information learned through training process of the model. CNN uses a system much like a multilayer perceptron that has been designed for reduced processing requirements. The layers of a CNN consist of an input layer, an output layer and a hidden layer that includes multiple convolutional layers, pooling layers, fully connected layers and normalization layers
+                    </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header bg-warning" id="headingTwo">
+                    <h2 class="mb-0">
+                        <button class="btn btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            <h4 class="text-center color-blue">What is GAN?</h4>
+                        </button>
+                    </h2>
+                    </div>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                    <div class="card-body text-center color-blue font-weight-bold">
+                        Generative Adversarial Network (GAN) is a Deep-Learning-based generative model that can be used to generate a new data based on a pre-trained set of data. The GAN model architecture involves two sub-models: a generator model for generating new examples and a discriminator model for classifying whether generated examples are real, from the domain, or fake, generated by the generator model.
+                    </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header bg-warning" id="headingThree">
+                    <h2 class="mb-0">
+                        <button class="btn btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            <h4 class="text-center color-blue">What is Brain Tumor?</h4>
+                        </button>
+                    </h2>
+                    </div>
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                    <div class="card-body text-center color-blue font-weight-bold">
+                        A brain tumour is a growth of cells in the brain that multiplies in an abnormal, uncontrollable way. Brain tumors can be cancerous (malignant) or noncancerous (benign). When benign or malignant tumors grow, they can cause the pressure inside your skull to increase. This can cause brain damage, and it can be life-threatening.
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container py-5" id="tentang">
+            <h2 class="text-center my-5 color-blue font-weight-bold">ABOUT</h2>
+
+            <div class="row">
+                <div class="col-6">
+                    <img src="{% static 'img/logo-unnes.png' %}" width="500px" height="100%" class="d-inline-block align-top" alt="">
+                </div>
+                <div class="col-6 my-auto">
+                    <h1 class="text-warning">Universitas Negeri Semarang</h1>
+                    <p class="color-blue font-weight-bold">Implementation of Brain MRI Classification using Convolutional Neural Network with Generative Adversarial Network and Transfer Learning.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-warning mt-5 py-4 px-5">
+            <div class="text-right">
+                &copy; Universitas Negeri Semarang 2022
+            </div>
+        </div>
+
+        <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+        <script src="{% static 'js/jquery.js' %}"></script>
+        <script src="{% static 'js/bootstrap.js' %}"></script>
+    </body>
+</html>
